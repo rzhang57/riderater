@@ -1,7 +1,6 @@
-package com.rmz.riderater;
+package com.rmz.riderater.model;
 
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 public class Rating {

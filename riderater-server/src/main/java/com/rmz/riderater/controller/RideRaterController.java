@@ -1,5 +1,7 @@
-package com.rmz.riderater;
+package com.rmz.riderater.controller;
 
+import com.rmz.riderater.model.Attraction;
+import com.rmz.riderater.repository.AttractionRepo;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

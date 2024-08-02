@@ -1,4 +1,4 @@
-package com.rmz.riderater;
+package com.rmz.riderater.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;

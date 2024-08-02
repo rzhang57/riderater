@@ -1,9 +1,9 @@
-package com.rmz.riderater;
+package com.rmz.riderater.repository;
 
+import com.rmz.riderater.model.Attraction;
+import com.rmz.riderater.model.Location;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
