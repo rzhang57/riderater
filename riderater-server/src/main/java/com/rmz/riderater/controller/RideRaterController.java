@@ -20,6 +20,12 @@ public class RideRaterController {
         this.aRepo = aRepo; // Singleton, only 1 repository, we should not be able to make new instances using new keyword
     }
 
+    @GetMapping("/")
+    public List<Attraction> findAll() {
+        return aRepo.getAttractions();
+    }
+/*
+
 
     //post (create)
     @ResponseStatus(HttpStatus.CREATED) // directly tells if something was created so no need to check the database to see
@@ -27,13 +33,10 @@ public class RideRaterController {
     public void create(@Valid @RequestBody Attraction a) {
         aRepo.createAttraction(a);
     }
+*/
 
     //Search (Read)
-    @GetMapping("")
-    public List<Attraction> findAll() {
-        return aRepo.getAttractions();
-    }
-
+/*
     @GetMapping("{id}")
     public Attraction getAttraction(@PathVariable Integer id) {
         return aRepo.getAttraction(id);
@@ -51,5 +54,5 @@ public class RideRaterController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable Integer id) {
         aRepo.delete(id);
-    }
+    }*/
 }

@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS Attractions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    location ENUM('SHANGHAI', 'CALIFORNIA'),
+    description TEXT
+);

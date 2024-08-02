@@ -1,4 +1,4 @@
-package com.rmz.riderater.application;
+package com.rmz.riderater;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
