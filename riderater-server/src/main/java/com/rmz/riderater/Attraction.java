@@ -1,9 +1,7 @@
 package com.rmz.riderater;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -11,16 +9,26 @@ public class Attraction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+    @NotEmpty
     private String name;
-    private String location;
+    private Location location;
     private String description;
 
-    public Long getId() {
+    public Attraction(Integer id, String name, Location location, String description) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.description = description;
+    }
+
+    public Attraction() {}
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -40,11 +48,11 @@ public class Attraction {
         this.description = description;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 }
