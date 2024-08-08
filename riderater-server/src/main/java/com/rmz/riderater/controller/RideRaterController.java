@@ -24,7 +24,6 @@ public class RideRaterController {
     public List<Attraction> findAll() {
         return aRepo.getAttractions();
     }
-/*
 
 
     //post (create)
@@ -33,10 +32,8 @@ public class RideRaterController {
     public void create(@Valid @RequestBody Attraction a) {
         aRepo.createAttraction(a);
     }
-*/
 
     //Search (Read)
-/*
     @GetMapping("{id}")
     public Attraction getAttraction(@PathVariable Integer id) {
         return aRepo.getAttraction(id);
@@ -54,5 +51,5 @@ public class RideRaterController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable Integer id) {
         aRepo.delete(id);
-    }*/
+    }
 }

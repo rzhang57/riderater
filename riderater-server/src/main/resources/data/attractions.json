@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "TRON",
+    "location": "SHANGHAI",
+    "description": "Roller Coaster"
+  },
+  {
+    "id": 2,
+    "name": "Space Mountain",
+    "location": "FLORIDA",
+    "description": "Indoor Roller Coaster"
+  },
+  {
+    "id": 3,
+    "name": "Pirates of the Caribbean",
+    "location": "CALIFORNIA",
+    "description": "Boat Ride"
+  },
+  {
+    "id": 4,
+    "name": "Haunted Mansion",
+    "location": "FLORIDA",
+    "description": "Dark Ride"
+  },
+  {
+    "id": 5,
+    "name": "It's a Small World",
+    "location": "PARIS",
+    "description": "Boat Ride"
+  },
+  {
+    "id": 6,
+    "name": "Big Thunder Mountain",
+    "location": "TOKYO",
+    "description": "Mine Train Roller Coaster"
+  },
+  {
+    "id": 7,
+    "name": "Jungle Cruise",
+    "location": "CALIFORNIA",
+    "description": "Boat Ride"
+  },
+  {
+    "id": 8,
+    "name": "Splash Mountain",
+    "location": "FLORIDA",
+    "description": "Log Flume Ride"
+  },
+  {
+    "id": 9,
+    "name": "Indiana Jones Adventure",
+    "location": "CALIFORNIA",
+    "description": "Dark Ride"
+  },
+  {
+    "id": 10,
+    "name": "Avatar Flight of Passage",
+    "location": "FLORIDA",
+    "description": "Simulator Ride"
+  }
+]
