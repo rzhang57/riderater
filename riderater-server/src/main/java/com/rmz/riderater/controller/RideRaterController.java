@@ -1,23 +1,32 @@
 package com.rmz.riderater.controller;
 
 import com.rmz.riderater.model.Attraction;
+import com.rmz.riderater.model.Rating;
 import com.rmz.riderater.repository.AttractionRepo;
+import com.rmz.riderater.repository.RatingsRepo;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+//AUTHORIZATION/ AUTHENTICATION - permissions (admin)
+// change this class to attractionscontroller, make a new class for ratings that allows lower level users (even anon maybe) to make ratings
+// who can read vs. who can write (3 levels) permissions
 
 @RestController
 @RequestMapping("api/attractions/")
 public class RideRaterController {
 
     private final AttractionRepo aRepo;
+    private final RatingsRepo rRepo;
 
     @Autowired // implicit with only one constructor in controller, but might need if has multiple
-    public RideRaterController(AttractionRepo aRepo) {
+    public RideRaterController(AttractionRepo aRepo, RatingsRepo rRepo) {
         this.aRepo = aRepo; // Singleton, only 1 repository, we should not be able to make new instances using new keyword
+        this.rRepo = rRepo;
     }
 
     @GetMapping("/")
@@ -28,15 +37,28 @@ public class RideRaterController {
 
     //post (create)
     @ResponseStatus(HttpStatus.CREATED) // directly tells if something was created so no need to check the database to see
-    @PostMapping("")
+    @PostMapping("/")
     public void create(@Valid @RequestBody Attraction a) {
         aRepo.createAttraction(a);
     }
 
+    @ResponseStatus(HttpStatus.CREATED) // directly tells if something was created so no need to check the database to see
+    @PostMapping("{id}")
+    public void createRating(@Valid @RequestBody Rating r, @PathVariable Integer id) {
+        Attraction a = aRepo.getAttraction(id);
+        rRepo.createRating(r, a);
+    }
+
+
+
     //Search (Read)
     @GetMapping("{id}")
     public Attraction getAttraction(@PathVariable Integer id) {
-        return aRepo.getAttraction(id);
+        Attraction attraction = aRepo.getAttraction(id);
+        if (attraction == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Attraction not found");
+        }
+        return attraction;
     }
 
     //put (update)

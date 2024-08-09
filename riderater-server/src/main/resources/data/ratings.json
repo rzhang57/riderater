@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "rating": 5,
+    "attraction": {
+      "id": 1
+    }
+  },
+  {
+    "id": 2,
+    "rating": 4,
+    "attraction": {
+      "id": 1
+    }
+  },
+  {
+    "id": 3,
+    "rating": 3,
+    "attraction": {
+      "id": 1
+    }
+  },
+  {
+    "id": 4,
+    "rating": 4,
+    "attraction": {
+      "id": 1
+    }
+  },
+  {
+    "id": 5,
+    "rating": 5,
+    "attraction": {
+      "id": 2
+    }
+  },
+  {
+    "id": 6,
+    "rating": 4,
+    "attraction": {
+      "id": 2
+    }
+  },
+  {
+    "id": 7,
+    "rating": 3,
+    "attraction": {
+      "id": 2
+    }
+  },
+  {
+    "id": 8,
+    "rating": 5,
+    "attraction": {
+      "id": 2
+    }
+  }
+]

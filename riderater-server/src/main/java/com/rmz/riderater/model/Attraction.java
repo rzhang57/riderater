@@ -3,6 +3,9 @@ package com.rmz.riderater.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 public class Attraction {
@@ -15,11 +18,18 @@ public class Attraction {
     private Location location;
     private String description;
 
+    @Transient
+    private double averageRating;
+
+    @OneToMany
+    private List<Rating> ratings = new ArrayList<>();;
+
     public Attraction(Integer id, String name, Location location, String description) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.description = description;
+        this.averageRating = updateAverageRating();
     }
 
     public Attraction() {}
@@ -54,5 +64,28 @@ public class Attraction {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public double updateAverageRating() {
+        if (ratings != null && !ratings.isEmpty()) {
+            double counter = 0;
+            for (Rating rating : ratings) {
+                counter += (double) rating.getRating();
+            }
+            averageRating = counter / ratings.size();
+            return averageRating;
+        }
+        return 0.0;
+
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void addRating(Rating rating) {
+        ratings.add(rating);
+        rating.setAttraction(this);
+        updateAverageRating();
     }
 }

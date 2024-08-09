@@ -1,3 +1,4 @@
+/*
 package com.rmz.riderater.repository;
 
 import com.rmz.riderater.model.Attraction;
@@ -53,3 +54,4 @@ public class AttractionRepoTester {
         attractions.removeIf(attraction -> attraction.getId() == id);
     }
 }
+*/

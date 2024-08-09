@@ -22,8 +22,8 @@ public class AttractionRepo {
 
     // Create
     public void createAttraction(Attraction attraction) {
-        var updated = jdbcClient.sql("INSERT INTO Attractions(id, name, location, description) VALUES(?, ?, ?, ?)")
-                .params(List.of(attraction.getId(), attraction.getName(), attraction.getLocation().toString(), attraction.getDescription()))
+        var updated = jdbcClient.sql("INSERT INTO Attractions(id, name, location, description, average_rating) VALUES(?, ?, ?, ?, ?)")
+                .params(List.of(attraction.getId(), attraction.getName(), attraction.getLocation().toString(), attraction.getDescription(), attraction.updateAverageRating()))
                 .update();
 
         Assert.state(updated == 1, "Failed to create attraction");
@@ -31,18 +31,34 @@ public class AttractionRepo {
 
 
     // Retrieve
+
+    // should create a system so that get request for a given attraction shows a transient list of TOP REVIEWS for a given attraction
     public List<Attraction> getAttractions() {
         return jdbcClient.sql("select * from attractions")
                 .query(Attraction.class)
                 .list();
     }
 
+    public List<Attraction> getAttractionsByPark() {
+        return jdbcClient.sql("select * from attractions")
+                .query(Attraction.class)
+                .list();
+    }
+
+    public List<String> getAttractionNames() {
+        return jdbcClient.sql("select name from attractions")
+                .query(String.class)
+                .list();
+    }
+
     public Attraction getAttraction(Integer id) {
-        return jdbcClient.sql("SELECT id, name, location, description FROM Attractions WHERE id = ?")
+        return jdbcClient.sql("SELECT * FROM Attractions WHERE id = ?")
                 .param(id) // passing in which variable to pass into the named param
                 .query(Attraction.class)
                 .single();
     }
+
+
     // Update
     public void update(Attraction attraction, Integer id) {
         var updated =  jdbcClient.sql("UPDATE Attractions SET name = ?, location = ?, description = ? WHERE id = ?")
