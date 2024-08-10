@@ -14,9 +14,11 @@ import java.util.List;
 public class RatingsRepo {
     private static final Logger logger = LoggerFactory.getLogger(AttractionRepo.class);
     private final JdbcClient jdbcClient;
+    private final AttractionRepo attractionRepo;
 
-    public RatingsRepo(JdbcClient jdbcClient) {
+    public RatingsRepo(JdbcClient jdbcClient, AttractionRepo attractionRepo) {
         this.jdbcClient = jdbcClient;
+        this.attractionRepo = attractionRepo;
     }
 
     // Create
@@ -26,9 +28,15 @@ public class RatingsRepo {
                 .params(List.of(rating.getId(), rating.getRating(), attraction.getId()))
                 .update();
 
-        Assert.state(updated == 1, "Failed to create Rating for the given attraction @ " + rating.getAttraction().getId());
+        if (updated == 1) {
+            attraction.addRating(rating);
+            attraction.updateAverageRating();
 
-        attraction.addRating(rating);
+            attractionRepo.updateAverageRating(attraction.getId());
+            logger.info("Updated average rating {}", attraction);
+        }
+
+        Assert.state(updated == 1, "Failed to create Rating for the given attraction @ " + rating.getAttraction().getId());
 
         logger.info("Updated average rating");
     }

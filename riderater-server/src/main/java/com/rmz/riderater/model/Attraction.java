@@ -17,11 +17,9 @@ public class Attraction {
     private String name;
     private Location location;
     private String description;
-
-    @Transient
     private double averageRating;
 
-    @OneToMany
+    @OneToMany(mappedBy = "attraction", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings = new ArrayList<>();;
 
     public Attraction(Integer id, String name, Location location, String description) {

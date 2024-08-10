@@ -22,7 +22,7 @@ public class AttractionRepo {
 
     // Create
     public void createAttraction(Attraction attraction) {
-        var updated = jdbcClient.sql("INSERT INTO Attractions(id, name, location, description, average_rating) VALUES(?, ?, ?, ?, ?)")
+        var updated = jdbcClient.sql("INSERT INTO Attractions(id, name, location, description, averageRating) VALUES(?, ?, ?, ?, ?)")
                 .params(List.of(attraction.getId(), attraction.getName(), attraction.getLocation().toString(), attraction.getDescription(), attraction.updateAverageRating()))
                 .update();
 
@@ -61,8 +61,8 @@ public class AttractionRepo {
 
     // Update
     public void update(Attraction attraction, Integer id) {
-        var updated =  jdbcClient.sql("UPDATE Attractions SET name = ?, location = ?, description = ? WHERE id = ?")
-                .params(List.of(attraction.getName(), attraction.getLocation().toString(), attraction.getDescription(), id))
+        var updated =  jdbcClient.sql("UPDATE Attractions SET name = ?, location = ?, description = ?, average_rating = ? WHERE id = ?")
+                .params(List.of(attraction.getName(), attraction.getLocation().toString(), attraction.getDescription(), attraction.updateAverageRating(), id))
                 .update();
 
         Assert.state(updated == 1, "Failed to update attraction at id " + id);
@@ -75,6 +75,20 @@ public class AttractionRepo {
                 .params(id)
                 .update();
         Assert.state(updated == 1, "Failed to delete attraction at id " + id);
+    }
+
+    public void updateAverageRating(Integer attractionId) {
+        var updated = jdbcClient.sql(
+                        "UPDATE Attractions " +
+                                "SET averageRating = (" +
+                                "    SELECT AVG(rating) " +
+                                "    FROM Ratings " +
+                                "    WHERE attraction_id = ?" +
+                                ") " +
+                                "WHERE id = ?"
+                )
+                .params(attractionId, attractionId)
+                .update();
     }
 
     // Other sql operations

@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS Attractions (
     name varchar(250) NOT NULL,
     location varchar(200) NOT NULL,
     description TEXT,
-    average_rating NUMERIC(3, 1) DEFAULT 0.0,
+    averageRating NUMERIC(3, 1) DEFAULT 0.0,
     PRIMARY KEY (id)
 );
 

@@ -12,16 +12,17 @@ public class Rating {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer rating;
-    //private String review;
-
-    public Rating(Integer id, Integer rating) {
-        this.id = id;
-        this.rating = rating;
-    }
 
     @ManyToOne
     @JoinColumn(name = "attraction_id", nullable = false)
     private Attraction attraction;
+    //private String review;
+
+    public Rating(Integer id, Integer rating, Attraction attraction) {
+        this.id = id;
+        this.rating = rating;
+        this.attraction = attraction;
+    }
 
     public Rating() {
 

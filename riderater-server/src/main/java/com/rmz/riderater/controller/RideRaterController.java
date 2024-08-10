@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //AUTHORIZATION/ AUTHENTICATION - permissions (admin)
@@ -43,7 +44,7 @@ public class RideRaterController {
     }
 
     @ResponseStatus(HttpStatus.CREATED) // directly tells if something was created so no need to check the database to see
-    @PostMapping("{id}")
+    @PostMapping("/{id}")
     public void createRating(@Valid @RequestBody Rating r, @PathVariable Integer id) {
         Attraction a = aRepo.getAttraction(id);
         rRepo.createRating(r, a);
@@ -52,13 +53,18 @@ public class RideRaterController {
 
 
     //Search (Read)
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Attraction getAttraction(@PathVariable Integer id) {
         Attraction attraction = aRepo.getAttraction(id);
         if (attraction == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Attraction not found");
         }
         return attraction;
+    }
+
+    @GetMapping("/{id}/ratings")
+    public List<Rating> getRatings(@PathVariable Integer id) {
+        return rRepo.getRatingAllRatingsByAttraction(id);
     }
 
     //put (update)
