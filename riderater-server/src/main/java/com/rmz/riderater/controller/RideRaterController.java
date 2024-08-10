@@ -50,8 +50,6 @@ public class RideRaterController {
         rRepo.createRating(r, a);
     }
 
-
-
     //Search (Read)
     @GetMapping("/{id}")
     public Attraction getAttraction(@PathVariable Integer id) {

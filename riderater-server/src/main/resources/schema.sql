@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS ratings;
+DROP TABLE IF EXISTS Attractions;
+
+
 CREATE TABLE IF NOT EXISTS Attractions (
     id INT NOT NULL,
     name varchar(250) NOT NULL,
@@ -10,6 +14,9 @@ CREATE TABLE IF NOT EXISTS Attractions (
 CREATE TABLE IF NOT EXISTS ratings (
     id INT NOT NULL,
     rating INT NOT NULL,
-    attraction_id INT NOT NULL REFERENCES Attractions(id) ON DELETE CASCADE,
-    PRIMARY KEY (id)
+    attraction_id INT NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_attraction
+        FOREIGN KEY (attraction_id)
+        REFERENCES Attractions (id)
 );

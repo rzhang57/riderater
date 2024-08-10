@@ -27,7 +27,12 @@ public class Attraction {
         this.name = name;
         this.location = location;
         this.description = description;
-        this.averageRating = updateAverageRating();
+        if (ratings.isEmpty()) {
+            this.averageRating = 0.0;
+        } else {
+            this.averageRating = updateAverageRating();
+        }
+
     }
 
     public Attraction() {}

@@ -13,7 +13,7 @@ public class Rating {
     private Integer id;
     private Integer rating;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "attraction_id", nullable = false)
     private Attraction attraction;
     //private String review;
