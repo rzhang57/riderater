@@ -44,14 +44,14 @@ public class RatingsRepo {
     // Retrieve
     public List<Rating> getAllRatings() {
         return jdbcClient.sql("select * from ratings")
-                .query(Rating.class)
+                .query(new RatingsRowMapper(attractionRepo))
                 .list();
     }
 
     public List<Rating> getRatingAllRatingsByAttraction(Integer id) {
         return jdbcClient.sql("select * from ratings WHERE attraction_id = ?")
                 .param(id)
-                .query(Rating.class)
+                .query(new RatingsRowMapper(attractionRepo))
                 .list();
     }
 
