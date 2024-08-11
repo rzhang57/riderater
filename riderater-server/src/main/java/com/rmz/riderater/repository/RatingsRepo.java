@@ -24,8 +24,8 @@ public class RatingsRepo {
     // Create
 
     public void createRating(Rating rating, Attraction attraction) {
-        var updated = jdbcClient.sql("INSERT INTO Ratings(id, rating, attraction_id) VALUES(?, ?, ?)")
-                .params(List.of(rating.getId(), rating.getRating(), attraction.getId()))
+        var updated = jdbcClient.sql("INSERT INTO Ratings(id, rating, comment, attraction_id) VALUES(?, ?, ?, ?)")
+                .params(List.of(rating.getId(), rating.getRating(), rating.getComment(), attraction.getId()))
                 .update();
 
         if (updated == 1) {
@@ -56,12 +56,21 @@ public class RatingsRepo {
     }
 
     // Update
-    public void editRating(Rating rating, Integer id) {
+    public void updateRating(Rating rating, Integer id) {
         var updated = jdbcClient.sql("UPDATE Ratings SET rating = ? WHERE id = ?")
                 .params(rating.getRating(), id)
                 .update();
 
         Assert.state(updated == 1, "Couldn't update rating with ID " + id);
+    }
+
+    // Delete
+    public void deleteRating(Integer id) {
+        var updated = jdbcClient.sql("DELETE FROM Ratings WHERE id = ?")
+                .param(id)
+                .update();
+
+        Assert.state(updated == 1, "Failed to delete rating at id " + id);
     }
 
 }

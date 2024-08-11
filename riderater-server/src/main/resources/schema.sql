@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS Attractions (
 CREATE TABLE IF NOT EXISTS ratings (
     id INT NOT NULL,
     rating INT NOT NULL,
+    comment TEXT,
     attraction_id INT NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_attraction

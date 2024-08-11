@@ -4,6 +4,7 @@ import com.rmz.riderater.model.Attraction;
 import com.rmz.riderater.model.Rating;
 import com.rmz.riderater.repository.AttractionRepo;
 import com.rmz.riderater.repository.RatingsRepo;
+import com.rmz.riderater.service.AttractionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,11 +24,13 @@ public class RideRaterController {
 
     private final AttractionRepo aRepo;
     private final RatingsRepo rRepo;
+    private final AttractionService aService;
 
     @Autowired // implicit with only one constructor in controller, but might need if has multiple
-    public RideRaterController(AttractionRepo aRepo, RatingsRepo rRepo) {
+    public RideRaterController(AttractionRepo aRepo, RatingsRepo rRepo, AttractionService aService) {
         this.aRepo = aRepo; // Singleton, only 1 repository, we should not be able to make new instances using new keyword
         this.rRepo = rRepo;
+        this.aService = aService;
     }
 
     @GetMapping("/")
@@ -53,7 +56,7 @@ public class RideRaterController {
     //Search (Read)
     @GetMapping("/{id}")
     public Attraction getAttraction(@PathVariable Integer id) {
-        Attraction attraction = aRepo.getAttraction(id);
+        Attraction attraction = aService.getAttractionWithRatings(id);
         if (attraction == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Attraction not found");
         }

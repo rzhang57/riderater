@@ -12,15 +12,17 @@ public class Rating {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer rating;
+    private String comment;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "attraction_id", nullable = false)
     private Attraction attraction;
     //private String review;
 
-    public Rating(Integer id, Integer rating, Attraction attraction) {
+    public Rating(Integer id, Integer rating, String comment, Attraction attraction) {
         this.id = id;
         this.rating = rating;
+        this.comment = comment;
         this.attraction = attraction;
     }
 
@@ -44,6 +46,14 @@ public class Rating {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getComment() {
+        return comment;
     }
 
     public Attraction getAttraction() {

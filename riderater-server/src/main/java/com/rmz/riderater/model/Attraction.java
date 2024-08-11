@@ -91,4 +91,8 @@ public class Attraction {
         rating.setAttraction(this);
         updateAverageRating();
     }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
 }
