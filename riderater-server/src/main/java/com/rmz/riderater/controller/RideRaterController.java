@@ -4,14 +4,13 @@ import com.rmz.riderater.model.Attraction;
 import com.rmz.riderater.model.Rating;
 import com.rmz.riderater.repository.AttractionRepo;
 import com.rmz.riderater.repository.RatingsRepo;
-import com.rmz.riderater.service.AttractionService;
+import com.rmz.riderater.service.RideRaterService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //AUTHORIZATION/ AUTHENTICATION - permissions (admin)
@@ -24,10 +23,10 @@ public class RideRaterController {
 
     private final AttractionRepo aRepo;
     private final RatingsRepo rRepo;
-    private final AttractionService aService;
+    private final RideRaterService aService;
 
     @Autowired // implicit with only one constructor in controller, but might need if has multiple
-    public RideRaterController(AttractionRepo aRepo, RatingsRepo rRepo, AttractionService aService) {
+    public RideRaterController(AttractionRepo aRepo, RatingsRepo rRepo, RideRaterService aService) {
         this.aRepo = aRepo; // Singleton, only 1 repository, we should not be able to make new instances using new keyword
         this.rRepo = rRepo;
         this.aService = aService;
@@ -35,17 +34,19 @@ public class RideRaterController {
 
     @GetMapping("/")
     public List<Attraction> findAll() {
-        return aRepo.getAttractions();
+        return aService.getAllAttractionsWithRatings();
     }
 
 
     //post (create)
+    // create attraction
     @ResponseStatus(HttpStatus.CREATED) // directly tells if something was created so no need to check the database to see
     @PostMapping("/")
     public void create(@Valid @RequestBody Attraction a) {
         aRepo.createAttraction(a);
     }
 
+    //create rating
     @ResponseStatus(HttpStatus.CREATED) // directly tells if something was created so no need to check the database to see
     @PostMapping("/{id}")
     public void createRating(@Valid @RequestBody Rating r, @PathVariable Integer id) {

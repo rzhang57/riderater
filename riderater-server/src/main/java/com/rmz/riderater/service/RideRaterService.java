@@ -7,10 +7,11 @@ import com.rmz.riderater.repository.RatingsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AttractionService {
+public class RideRaterService {
 
     @Autowired
     private AttractionRepo attractionRepo;
@@ -28,4 +29,17 @@ public class AttractionService {
 
         return attraction;
     }
+
+    public List<Attraction> getAllAttractionsWithRatings() {
+        int maxId = attractionRepo.getAttractions().size();
+        List<Attraction> attractions = new ArrayList<>(maxId);
+
+        for (Attraction attraction : attractionRepo.getAttractions()) {
+            Attraction newAttraction = getAttractionWithRatings(attraction.getId());
+            attractions.add(newAttraction);
+        }
+
+        return attractions;
+    }
+
 }

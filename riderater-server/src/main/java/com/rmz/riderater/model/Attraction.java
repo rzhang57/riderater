@@ -20,19 +20,32 @@ public class Attraction {
     private double averageRating;
 
     @OneToMany(mappedBy = "attraction", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Rating> ratings = new ArrayList<>();;
+    private List<Rating> ratings = new ArrayList<>();
+
+    public Attraction(Integer id, String name, Location location, String description, List<Rating> ratings) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.description = description;
+        this.averageRating = updateAverageRating();
+        this.ratings = ratings;
+    }
+
+    public Attraction(Integer id, String name, String location, String description, double averageRating, List<Rating> ratings) {
+        this.id = id;
+        this.name = name;
+        this.location = Location.valueOf(location);
+        this.description = description;
+        this.averageRating = averageRating;
+        this.ratings = ratings;
+    }
 
     public Attraction(Integer id, String name, Location location, String description) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.description = description;
-        if (ratings.isEmpty()) {
-            this.averageRating = 0.0;
-        } else {
-            this.averageRating = updateAverageRating();
-        }
-
+        this.averageRating = updateAverageRating();
     }
 
     public Attraction() {}
