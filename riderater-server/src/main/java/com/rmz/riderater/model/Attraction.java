@@ -22,12 +22,12 @@ public class Attraction {
     @OneToMany(mappedBy = "attraction", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings = new ArrayList<>();
 
-    public Attraction(Integer id, String name, Location location, String description, List<Rating> ratings) {
+    public Attraction(Integer id, String name, Location location, String description, double averageRating, List <Rating> ratings) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.description = description;
-        this.averageRating = updateAverageRating();
+        this.averageRating = averageRating;
         this.ratings = ratings;
     }
 
@@ -92,7 +92,14 @@ public class Attraction {
             return averageRating;
         }
         return 0.0;
+    }
 
+    public double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
     }
 
     public List<Rating> getRatings() {

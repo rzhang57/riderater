@@ -17,11 +17,13 @@ public class RatingsRowMapper implements RowMapper {
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         // initial creation of rating
-        Rating rating = new Rating(rs.getInt("id"), rs.getInt("rating"), rs.getString("comment"), null);
+        Rating rating = new Rating(rs.getInt("id"), rs.getInt("rating"), rs.getString("comment"));
 
         // extrapolates attraction from foreign key, maps it to rating
+/*
         Attraction attraction = attractionRepo.getAttraction(rs.getInt("attraction_id"));
         rating.setAttraction(attraction);
+*/
 
         return rating;
     }

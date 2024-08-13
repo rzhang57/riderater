@@ -26,6 +26,12 @@ public class Rating {
         this.attraction = attraction;
     }
 
+    public Rating(Integer id, Integer rating, String comment) {
+        this.id = id;
+        this.rating = rating;
+        this.comment = comment;
+    }
+
     public Rating() {
 
     }

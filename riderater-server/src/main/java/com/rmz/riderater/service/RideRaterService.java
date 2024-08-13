@@ -15,7 +15,6 @@ public class RideRaterService {
 
     @Autowired
     private AttractionRepo attractionRepo;
-
     @Autowired
     private RatingsRepo ratingsRepo;
 
@@ -25,7 +24,23 @@ public class RideRaterService {
         List<Rating> ratings = ratingsRepo.getRatingAllRatingsByAttraction(attractionId);
 
         // check if this brute force initilization of serialized fields can be done prior to the service layer - def can be done within the repo maybe but might be able to do in base folders
+
+        attractionRepo.updateAverageRating(attractionId);
         attraction.setRatings(ratings);
+
+
+        return attraction;
+    }
+
+    public Attraction getAttractionWithRatingsWAttractionAttached(Integer attractionId) {
+        Attraction attraction = attractionRepo.getAttraction(attractionId);
+
+        List<Rating> ratings = ratingsRepo.getRatingAllRatingsByAttraction(attractionId);
+
+        // check if this brute force initilization of serialized fields can be done prior to the service layer - def can be done within the repo maybe but might be able to do in base folders
+
+        attraction.setRatings(ratings);
+        // ^ currently dont want ratings when fetching - in future could be of use
 
         return attraction;
     }

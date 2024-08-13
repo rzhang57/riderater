@@ -17,6 +17,8 @@ import java.util.List;
 // change this class to attractionscontroller, make a new class for ratings that allows lower level users (even anon maybe) to make ratings
 // who can read vs. who can write (3 levels) permissions
 
+//paging for get requests - don't send all ratings at once
+
 @RestController
 @RequestMapping("api/attractions/")
 public class RideRaterController {

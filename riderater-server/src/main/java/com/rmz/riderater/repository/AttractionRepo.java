@@ -77,6 +77,8 @@ public class AttractionRepo {
         Assert.state(updated == 1, "Failed to delete attraction at id " + id);
     }
 
+    // instead average rating inside attractions table, should put into a view instead of directly in schema, done in database directly - get data from view instead of calculating through jdbc
+
     public void updateAverageRating(Integer attractionId) {
         var updated = jdbcClient.sql(
                         "UPDATE Attractions " +
