@@ -13,6 +13,7 @@ public class Rating {
     private Integer id;
     private Integer rating;
     private String comment;
+    // date CREATED
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "attraction_id", nullable = false)
