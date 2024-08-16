@@ -1,4 +1,4 @@
-# Amusement Park Ride Rater
+# Ride Rater
 
 A community-driven application that allows users to rate and review amusement park rides.
 
