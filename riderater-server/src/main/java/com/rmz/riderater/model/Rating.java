@@ -2,6 +2,9 @@ package com.rmz.riderater.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Entity
 public class Rating {
 
@@ -13,7 +16,14 @@ public class Rating {
     private Integer id;
     private Integer rating;
     private String comment;
-    // date CREATED
+
+    @Column(nullable = false, updatable = false)
+    private LocalDate date;
+
+/*    @PrePersist
+    protected void onCreate() {
+        this.date = LocalDate.now();
+    }*/
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "attraction_id", nullable = false)
@@ -27,10 +37,20 @@ public class Rating {
         this.attraction = attraction;
     }
 
-    public Rating(Integer id, Integer rating, String comment) {
+
+    public Rating(Integer id, Integer rating, String comment, LocalDate date, Attraction attraction) {
         this.id = id;
         this.rating = rating;
         this.comment = comment;
+        this.date = date;
+        this.attraction = attraction;
+    }
+
+    public Rating(Integer id, Integer rating, String comment, LocalDate date) {
+        this.id = id;
+        this.rating = rating;
+        this.comment = comment;
+        this.date = date;
     }
 
     public Rating() {
@@ -61,6 +81,14 @@ public class Rating {
 
     public String getComment() {
         return comment;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Attraction getAttraction() {

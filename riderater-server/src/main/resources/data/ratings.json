@@ -3,6 +3,7 @@
     "id": 1,
     "rating": 5,
     "comment": "Amazing experience!",
+    "date": "2024-07-01",
     "attraction": {
       "id": 1
     }
@@ -11,6 +12,7 @@
     "id": 2,
     "rating": 4,
     "comment": "Really fun, but could be faster.",
+    "date": "2024-07-02",
     "attraction": {
       "id": 1
     }
@@ -19,6 +21,7 @@
     "id": 3,
     "rating": 3,
     "comment": "It was okay, nothing special.",
+    "date": "2024-07-03",
     "attraction": {
       "id": 1
     }
@@ -27,6 +30,7 @@
     "id": 4,
     "rating": 4,
     "comment": "Great ride, but the wait was long.",
+    "date": "2024-07-04",
     "attraction": {
       "id": 1
     }
@@ -35,6 +39,7 @@
     "id": 5,
     "rating": 5,
     "comment": "Absolutely loved it!",
+    "date": "2024-07-05",
     "attraction": {
       "id": 2
     }
@@ -43,6 +48,7 @@
     "id": 6,
     "rating": 4,
     "comment": "Pretty good, would ride again.",
+    "date": "2024-07-06",
     "attraction": {
       "id": 2
     }
@@ -51,6 +57,7 @@
     "id": 7,
     "rating": 3,
     "comment": "Not bad, but not thrilling either.",
+    "date": "2024-07-07",
     "attraction": {
       "id": 2
     }
@@ -59,6 +66,7 @@
     "id": 8,
     "rating": 5,
     "comment": "One of the best rides I've been on!",
+    "date": "2024-07-08",
     "attraction": {
       "id": 2
     }

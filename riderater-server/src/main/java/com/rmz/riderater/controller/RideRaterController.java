@@ -52,7 +52,7 @@ public class RideRaterController {
     @PostMapping("/{id}")
     public void createRating(@Valid @RequestBody Rating r, @PathVariable Integer id) {
         Attraction a = aRepo.getAttraction(id);
-        rRepo.createRating(r, a);
+        rRepo.createRatingDefDate(r, a);
     }
 
     //Search (Read)

@@ -24,6 +24,24 @@ public class RatingsRepo {
     // Create
 
     public void createRating(Rating rating, Attraction attraction) {
+        var updated = jdbcClient.sql("INSERT INTO Ratings(id, rating, comment, attraction_id, date) VALUES(?, ?, ?, ?, ?)")
+                .params(List.of(rating.getId(), rating.getRating(), rating.getComment(), attraction.getId(), rating.getDate()))
+                .update();
+
+        if (updated == 1) {
+            attraction.addRating(rating);
+            attraction.updateAverageRating();
+
+            attractionRepo.updateAverageRating(attraction.getId());
+            logger.info("Updated average rating {}", attraction);
+        }
+
+        Assert.state(updated == 1, "Failed to create Rating for the given attraction @ " + rating.getAttraction().getId());
+
+        logger.info("Updated average rating");
+    }
+
+    public void createRatingDefDate(Rating rating, Attraction attraction) {
         var updated = jdbcClient.sql("INSERT INTO Ratings(id, rating, comment, attraction_id) VALUES(?, ?, ?, ?)")
                 .params(List.of(rating.getId(), rating.getRating(), rating.getComment(), attraction.getId()))
                 .update();

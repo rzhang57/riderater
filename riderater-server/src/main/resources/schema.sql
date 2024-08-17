@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS ratings (
     rating INT NOT NULL,
     comment TEXT,
     attraction_id INT NOT NULL,
+    date DATE DEFAULT CURRENT_DATE,
     PRIMARY KEY (id),
     CONSTRAINT fk_attraction
         FOREIGN KEY (attraction_id)
