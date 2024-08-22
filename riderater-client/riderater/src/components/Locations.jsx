@@ -1,9 +1,12 @@
 import React from 'react';
+import Location from './Location';
 
 const Locations = () => {
     return (
         <div>
-            <p>Here are the buttons that lead to all locations</p>
+            <Location name = "CALIFORNIA"/>
+            <Location name = "TOKYO"/>
+            <Location name = "FLORIDA"/>
         </div>
     )
 }

@@ -39,8 +39,9 @@ public class AttractionRepo {
                 .list();
     }
 
-    public List<Attraction> getAttractionsByPark() {
-        return jdbcClient.sql("select * from attractions")
+    public List<Attraction> getAttractionsByPark(String location) {
+        return jdbcClient.sql("select * from attractions where location = ?")
+                .param(location)
                 .query(Attraction.class)
                 .list();
     }

@@ -1,16 +1,23 @@
 [
   {
     "id": 1,
-    "name": "Ferris Wheel",
+    "name": "Space Mountain",
     "location": "CALIFORNIA",
-    "description": "A large Ferris wheel offering great views of the city.",
+    "description": "A high-speed indoor roller coaster through outer space.",
     "average_rating": 0.0
   },
   {
     "id": 2,
-    "name": "Roller Coaster",
-    "location": "TOKYO",
-    "description": "A high-speed roller coaster with loops and twists.",
+    "name": "Pirates of the Caribbean",
+    "location": "CALIFORNIA",
+    "description": "A boat ride through pirate-infested waters.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 3,
+    "name": "Radiator Springs Racers",
+    "location": "CALIFORNIA",
+    "description": "A thrilling race through the world of Cars.",
     "average_rating": 0.0
   }
 ]

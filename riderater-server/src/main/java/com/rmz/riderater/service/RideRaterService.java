@@ -19,14 +19,20 @@ public class RideRaterService {
     private RatingsRepo ratingsRepo;
 
     public Attraction getAttractionWithRatings(Integer attractionId) {
-        Attraction attraction = attractionRepo.getAttraction(attractionId);
 
+        Attraction attraction = attractionRepo.getAttraction(attractionId);
         List<Rating> ratings = ratingsRepo.getRatingAllRatingsByAttraction(attractionId);
 
         // check if this brute force initilization of serialized fields can be done prior to the service layer - def can be done within the repo maybe but might be able to do in base folders
 
-        attractionRepo.updateAverageRating(attractionId);
-        attraction.setRatings(ratings);
+
+        if (!ratings.isEmpty()){
+            attractionRepo.updateAverageRating(attractionId);
+            attraction.setRatings(ratings);
+        } else {
+            attraction.setRatings(new ArrayList<>());
+            attraction.setAverageRating(0.0);
+        }
 
 
         return attraction;
@@ -50,6 +56,16 @@ public class RideRaterService {
         List<Attraction> attractions = new ArrayList<>(maxId);
 
         for (Attraction attraction : attractionRepo.getAttractions()) {
+            Attraction newAttraction = getAttractionWithRatings(attraction.getId());
+            attractions.add(newAttraction);
+        }
+
+        return attractions;
+    }
+
+    public List<Attraction> getAllAttractionsByLocation(String location) {
+        List<Attraction> attractions = new ArrayList<>();
+        for (Attraction attraction : attractionRepo.getAttractionsByPark(location)) {
             Attraction newAttraction = getAttractionWithRatings(attraction.getId());
             attractions.add(newAttraction);
         }

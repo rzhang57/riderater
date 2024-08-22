@@ -55,9 +55,15 @@ public class RideRaterController {
         rRepo.createRatingDefDate(r, a);
     }
 
+
     //Search (Read)
-    @GetMapping("/{id}")
-    public Attraction getAttraction(@PathVariable Integer id) {
+    @GetMapping("/{location}")
+    public List<Attraction> getAttractions(@PathVariable String location) {
+        return aService.getAllAttractionsByLocation(location);
+    }
+
+    @GetMapping("/{location}/{id}")
+    public Attraction getAttraction(@PathVariable String location, @PathVariable Integer id) {
         Attraction attraction = aService.getAttractionWithRatings(id);
         if (attraction == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Attraction not found");
