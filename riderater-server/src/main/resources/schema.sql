@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS Attractions;
 
 
 CREATE TABLE IF NOT EXISTS Attractions (
-    id INT NOT NULL,
+    id SERIAL NOT NULL,
     name varchar(250) NOT NULL,
     location varchar(200) NOT NULL,
     description TEXT,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Attractions (
 );
 
 CREATE TABLE IF NOT EXISTS ratings (
-    id INT NOT NULL,
+    id SERIAL NOT NULL,
     rating INT NOT NULL,
     comment TEXT,
     attraction_id INT NOT NULL,

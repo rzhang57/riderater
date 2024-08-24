@@ -70,3 +70,49 @@
     justify-content: center;
     text-align: center;
 }
+
+.ratings-list {
+    display: grid;
+    grid-template-columns: auto; /* Creates 3 equal-width columns */
+    gap: 16px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+}
+
+.rating-container {
+    width: 1000px;
+    height: fit-content;
+    background-color: #f0f0f0; /* Slightly dimmed background */
+    border-radius: 8px; /* Rounded edges */
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-bottom: 16px;
+}
+
+.rating-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.rating-user {
+    font-weight: bold;
+    color: #333;
+}
+
+.rating-score {
+    margin-left: 8px;
+    color: #ffcc00; /* Yellow color for rating */
+}
+
+.rating-date {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.rating-review {
+    color: #555;
+}

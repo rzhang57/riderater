@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Link, useParams} from 'react-router-dom';
 import {Spinner} from "@radix-ui/themes";
+import AttractionButton from './AttractionButton.jsx';
 
 const AttractionList = () => {
     const { location } = useParams();
@@ -27,22 +28,40 @@ const AttractionList = () => {
         return (
             <Spinner/>
             );
-
     }
 
     return (
-        <div>
+        <>
             <h1>{location}</h1>
-            <ul>
-                {Array.isArray(attractions) ? (
-                    attractions.map((attraction, index) => (
-                        <li key={index}>{attraction.name} {attraction.averageRating}</li>
-                    ))
-                ) : (
-                    <li>No attractions found</li>
-                )}
-            </ul>
-        </div>
+            <div className="grid">
+
+                <>
+                    {
+                        attractions.map((attraction) => (
+                            <AttractionButton name={attraction.name}
+                                              imgUrl={'https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg'}
+                                              apiAttractionId={attraction.id}
+                                              apiLocationName={location}
+                                              avgRating={attraction.averageRating}
+                                              description={attraction.description}
+                            />
+                        ))
+                    }
+                </>
+
+
+                {/*<ul>*/}
+                {/*    {Array.isArray(attractions) ? (*/}
+                {/*        attractions.map((attraction, index) => (*/}
+                {/*            <li key={index}>{attraction.name} {attraction.averageRating}</li>*/}
+                {/*        ))*/}
+                {/*    ) : (*/}
+                {/*        <li>No attractions found</li>*/}
+                {/*    )}*/}
+                {/*</ul>*/}
+            </div>
+        </>
+
     )
 }
 

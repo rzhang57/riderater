@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Locations from './components/Locations';
 import './App.css'
 import AttractionList from "./components/AttractionList";
+import RatingsList from "./components/RatingsList.jsx";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
               <Route path="/" element={<Home/>}/>
               <Route path="/locations" element={<Locations/>}/>
               <Route path="/locations/:location" element={<AttractionList/>}/>
+              <Route path="/locations/:location/attraction/:attractionId" element={<RatingsList/>}/>
           </Routes>
       </Router>
 )

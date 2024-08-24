@@ -24,8 +24,8 @@ public class RatingsRepo {
     // Create
 
     public void createRating(Rating rating, Attraction attraction) {
-        var updated = jdbcClient.sql("INSERT INTO Ratings(id, rating, comment, attraction_id, date) VALUES(?, ?, ?, ?, ?)")
-                .params(List.of(rating.getId(), rating.getRating(), rating.getComment(), attraction.getId(), rating.getDate()))
+        var updated = jdbcClient.sql("INSERT INTO Ratings(rating, comment, attraction_id, date) VALUES(?, ?, ?, ?)")
+                .params(List.of(rating.getRating(), rating.getComment(), attraction.getId(), rating.getDate()))
                 .update();
 
         if (updated == 1) {
@@ -42,8 +42,8 @@ public class RatingsRepo {
     }
 
     public void createRatingDefDate(Rating rating, Attraction attraction) {
-        var updated = jdbcClient.sql("INSERT INTO Ratings(id, rating, comment, attraction_id) VALUES(?, ?, ?, ?)")
-                .params(List.of(rating.getId(), rating.getRating(), rating.getComment(), attraction.getId()))
+        var updated = jdbcClient.sql("INSERT INTO Ratings(rating, comment, attraction_id) VALUES(?, ?, ?)")
+                .params(List.of(rating.getRating(), rating.getComment(), attraction.getId()))
                 .update();
 
         if (updated == 1) {
