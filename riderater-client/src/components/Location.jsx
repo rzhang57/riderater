@@ -5,7 +5,7 @@ const Location = ({ name, imgUrl, location }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/locations/${location.toLowerCase()}`);
+        navigate(`/locations/${location.toLowerCase()}`, { state: { name } });
     };
 
     return (

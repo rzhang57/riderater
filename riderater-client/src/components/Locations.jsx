@@ -4,7 +4,7 @@ import Location from './Location';
 const Locations = () => {
     return (
         <>
-            <h1>Select park:</h1>
+            <h1 className={'title'}>Select Resort:</h1>
             <div className='grid'>
                 <Location name="Disneyland Resort, Anaheim, California"
                           imgUrl={"https://media.cntraveler.com/photos/614e3cf6d4cb4c568961dee5/1:1/w_3648,h_3648,c_limit/Disneyland_DXDDD2.jpg"}

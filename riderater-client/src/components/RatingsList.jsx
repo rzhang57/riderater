@@ -5,10 +5,14 @@ import {Spinner} from "@radix-ui/themes";
 import AttractionButton from './AttractionButton.jsx';
 import Rating from "./Rating.jsx";
 
+// should implement pagination
 const RatingsList = ({location, attractionName, attractionDescription}) => {
     const {attractionId} = useParams();
     const [ratings, setRatings] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [attraction, setAttraction] = useState({});
+    let loading1 = false;
+    let loading2 = false;
 
     useEffect (() => {
         const fetchRatingsByAttraction = async () => {
@@ -16,26 +20,37 @@ const RatingsList = ({location, attractionName, attractionDescription}) => {
                 const response = await axios.get(`http://localhost:8080/api/attractions/${attractionId}/ratings`);
                 console.log(response.data);
                 setRatings(response.data);
+                loading1 = true;
             } catch(error) {
                 console.error('Error fetching data', error);
             } finally {
-                setLoading(false);
+                if (loading1 && loading2) {
+                    setLoading(false);
+                } else {
+                    console.log("title not yet loaded")
+                }
             }
         };
 
         const fetchAttraction = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/attractions/${attractionId}/ratings`);
+                const response = await axios.get(`http://localhost:8080/api/attractions/x/${attractionId}`);
                 console.log(response.data);
-                setRatings(response.data);
+                setAttraction(response.data);
+                loading2 = true;
             } catch(error) {
                 console.error('Error fetching data', error);
             } finally {
-                setLoading(false);
+                if (loading1 && loading2) {
+                    setLoading(false);
+                } else {
+                    console.log("ratings not yet loaded")
+                }
             }
         }
 
         fetchRatingsByAttraction();
+        fetchAttraction();
     }, [attractionId]);
 
     if (loading) {
@@ -46,13 +61,13 @@ const RatingsList = ({location, attractionName, attractionDescription}) => {
 
     return (
         <>
-            <h1>{attractionName}</h1>
+            <h1 className={'title'}>{attraction.name}</h1>
             <div className="ratings-list">
-
                 <>
                     {
-                        ratings.map((rating) => (
+                        ratings.map((rating, index) => (
                             <Rating
+                                key={rating.id || index}
                                 user={"anonymous"}
                                 date={rating.date}
                                 rating={rating.rating}

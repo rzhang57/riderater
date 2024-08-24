@@ -48,7 +48,7 @@
 
 .location-button:hover {
     transform: scale(1.1);
-    background-color: rgba(243, 225, 255, 0.2);
+    background-color: rgba(243, 225, 255, 0.9);
     fill-opacity: 70%;
 }
 
@@ -115,4 +115,9 @@
 
 .rating-review {
     color: #555;
+}
+
+.title {
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
