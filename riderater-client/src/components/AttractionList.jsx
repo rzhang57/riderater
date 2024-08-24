@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Link, useParams} from 'react-router-dom';
+import {Spinner} from "@radix-ui/themes";
 
 const AttractionList = () => {
     const { location } = useParams();
     const [attractions, setAttractions] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect (() => {
         const fetchAttractions = async () => {
@@ -14,14 +16,23 @@ const AttractionList = () => {
                 setAttractions(response.data);
             } catch(error) {
                 console.error('Error fetching data', error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchAttractions();
     }, [location]);
 
+    if (loading) {
+        return (
+            <Spinner/>
+            );
+
+    }
+
     return (
         <div>
-            <h2>{location}</h2>
+            <h1>{location}</h1>
             <ul>
                 {Array.isArray(attractions) ? (
                     attractions.map((attraction, index) => (

@@ -10,14 +10,91 @@
     "id": 2,
     "name": "Pirates of the Caribbean",
     "location": "CALIFORNIA",
-    "description": "A boat ride through pirate-infested waters.",
+    "description": "A boat ride through pirate-infested waters with animatronic pirates.",
     "average_rating": 0.0
   },
   {
     "id": 3,
+    "name": "It's a Small World",
+    "location": "CALIFORNIA",
+    "description": "A gentle boat ride celebrating the cultures of the world with animatronic dolls.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 4,
+    "name": "The Haunted Mansion",
+    "location": "CALIFORNIA",
+    "description": "A spooky tour through a haunted house with ghosts and ghouls.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 5,
+    "name": "Splash Mountain",
+    "location": "CALIFORNIA",
+    "description": "A log-flume ride with a thrilling drop, soon to be reimagined as Tiana’s Bayou Adventure.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 6,
+    "name": "Millennium Falcon: Smugglers Run",
+    "location": "CALIFORNIA",
+    "description": "An interactive flight simulator where you pilot the Millennium Falcon.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 7,
+    "name": "Star Wars: Rise of the Resistance",
+    "location": "CALIFORNIA",
+    "description": "An immersive ride that puts you in the middle of a battle between the Resistance and the First Order.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 8,
+    "name": "Peter Pan's Flight",
+    "location": "CALIFORNIA",
+    "description": "A magical flight over London and Neverland with Peter Pan.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 9,
+    "name": "Dumbo the Flying Elephant",
+    "location": "CALIFORNIA",
+    "description": "A gentle ride where you fly with Dumbo.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 10,
+    "name": "Matterhorn Bobsleds",
+    "location": "CALIFORNIA",
+    "description": "A bobsled ride through the icy slopes of the Matterhorn mountain.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 11,
+    "name": "Guardians of the Galaxy – Mission: BREAKOUT!",
+    "location": "CALIFORNIA",
+    "description": "A thrilling drop ride set in the Guardians of the Galaxy universe.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 12,
     "name": "Radiator Springs Racers",
     "location": "CALIFORNIA",
     "description": "A thrilling race through the world of Cars.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 13,
+    "name": "Incredicoaster",
+    "location": "CALIFORNIA",
+    "description": "A high-speed roller coaster based on The Incredibles.",
+    "average_rating": 0.0
+  },
+  {
+    "id": 14,
+    "name": "Web Slingers: A Spider-Man Adventure",
+    "location": "CALIFORNIA",
+    "description": "An interactive ride where you help Spider-Man capture rogue Spider-Bots.",
     "average_rating": 0.0
   }
 ]

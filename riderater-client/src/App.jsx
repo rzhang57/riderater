@@ -5,17 +5,14 @@ import Locations from './components/Locations';
 import './App.css'
 import AttractionList from "./components/AttractionList";
 
-function App() {
+export default function App() {
   return (
       <Router>
           <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/locations" element={<Locations/>}/>
-              <Route path="/locations/:location" element={<AttractionList />} />
+              <Route path="/locations/:location" element={<AttractionList/>}/>
           </Routes>
       </Router>
-
-  )
+)
 }
-
-export default App;

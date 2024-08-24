@@ -1,5 +1,8 @@
+version: '3.8'
+
 services:
   postgres:
+    container_name: 'Attractions'
     image: 'postgres:latest'
     environment:
       - 'POSTGRES_DB=Attractions'
