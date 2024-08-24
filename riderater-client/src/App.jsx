@@ -5,6 +5,8 @@ import Locations from './components/Locations';
 import './App.css'
 import AttractionList from "./components/AttractionList";
 import RatingsList from "./components/RatingsList.jsx";
+import '@radix-ui/themes/styles.css';
+
 
 export default function App() {
   return (

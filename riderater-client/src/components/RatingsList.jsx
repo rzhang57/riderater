@@ -4,6 +4,7 @@ import {Link, useParams} from 'react-router-dom';
 import {Spinner} from "@radix-ui/themes";
 import AttractionButton from './AttractionButton.jsx';
 import Rating from "./Rating.jsx";
+import CreateRatingButton from "./CreateRatingButton.jsx";
 
 // should implement pagination
 const RatingsList = ({location, attractionName, attractionDescription}) => {
@@ -13,6 +14,16 @@ const RatingsList = ({location, attractionName, attractionDescription}) => {
     const [attraction, setAttraction] = useState({});
     let loading1 = false;
     let loading2 = false;
+
+    useEffect(
+        () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // This makes the scroll smooth
+            });
+        },
+        [loading]
+    )
 
     useEffect (() => {
         const fetchRatingsByAttraction = async () => {
@@ -62,6 +73,9 @@ const RatingsList = ({location, attractionName, attractionDescription}) => {
     return (
         <>
             <h1 className={'title'}>{attraction.name}</h1>
+            <CreateRatingButton apiLocationName={attraction.location.toLowerCase()} apiAttractionId={attraction.id} />
+
+            <p></p>
             <div className="ratings-list">
                 <>
                     {

@@ -121,3 +121,14 @@
     margin-top: 25px;
     margin-bottom: 25px;
 }
+
+.iconButton {
+    border-radius: 50%;
+}
+
+
+.create-rating-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
