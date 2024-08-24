@@ -6,6 +6,7 @@ import './App.css'
 import AttractionList from "./components/AttractionList";
 import RatingsList from "./components/RatingsList.jsx";
 import '@radix-ui/themes/styles.css';
+import RatingForm from "./components/RatingForm.jsx";
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
               <Route path="/locations" element={<Locations/>}/>
               <Route path="/locations/:location" element={<AttractionList/>}/>
               <Route path="/locations/:location/attraction/:attractionId" element={<RatingsList/>}/>
+              <Route path="/locations/:location/attraction/:attractionId/ratings/create" element={<RatingForm/>}/>
           </Routes>
       </Router>
 )

@@ -16,22 +16,6 @@
     }
 }
 
-.PopoverTrigger {
-    background-color: black;
-    border-radius: 4px;
-}
-
-.PopoverContent {
-    border-radius: 4px;
-    padding: 20px;
-    width: 260px;
-    background-color: black;
-}
-
-.PopoverArrow {
-    fill: white;
-}
-
 .location-button {
     width: 400px;
     height: 400px;
@@ -131,4 +115,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.form-list {
+    display: grid;
+    grid-template-columns: auto; /* Creates 3 equal-width columns */
+    gap: 16px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+textarea {
+    font-size: 20px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
