@@ -1,27 +1,46 @@
 import React, {useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import {AlertDialog, Button, Flex} from "@radix-ui/themes";
+import error from "eslint-plugin-react/lib/util/error.js";
 
 export default function RatingForm() {
     const { attractionId } = useParams();
-    const [rating, setRating] = useState('');
+    const { location } = useParams();
+    const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+    const navigate = useNavigate();
 
     console.log(attractionId);
 
     const handleClick = async (e) => {
-        console.log('Submitting:', { rating, comment, attractionId });
+        e.preventDefault();
 
-        try {
-            const response = await axios.post(`http://localhost:8080/api/attractions/${attractionId}/ratings`,
-                {
-                    rating: rating,
-                    comment: comment
-                });
-            console.log("Rating submitted successfully:", response.data);
-        } catch (error) {
-            console.error("Error submitting rating:", error);
+
+        if (rating === 0) {
+            setIsDialogOpen(true);
+        } else {
+            try {
+                console.log('Submitting:', { rating, comment, attractionId });
+                const response = await axios.post(`http://localhost:8080/api/attractions/${attractionId}`,
+                    {
+                        'rating': rating,
+                        'comment': comment,
+                        'attractionId': attractionId,
+                    });
+                console.log("Rating submitted successfully:", response.data);
+            } catch (error) {
+                console.error("Error submitting rating:", error);
+            }
+
+            navigate(`/locations/${location}/attraction/${attractionId}`);
+
         }
+
+
+
     }
 
     return (
@@ -31,6 +50,7 @@ export default function RatingForm() {
                 <div>
                     <label htmlFor="rating"></label>
                     <select id="rating" name="rating" onChange={(e) => setRating(e.target.value)} required>
+                        <option>Select a rating</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -49,9 +69,31 @@ export default function RatingForm() {
                               required></textarea>
                 </div>
                 <div>
-                    <button type="submit" onSubmit={handleClick}>Submit</button>
+                    <button onClick={handleClick}>Submit</button>
                 </div>
+
+
             </form>
+
+            <AlertDialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <AlertDialog.Trigger asChild>
+                    <Button style={{ display: 'none' }}>Revoke access</Button>
+                </AlertDialog.Trigger>
+                <AlertDialog.Content maxWidth="450px">
+                    <AlertDialog.Title>Invalid Rating</AlertDialog.Title>
+                    <AlertDialog.Description size="2">
+                        Please select a rating before submitting.
+                    </AlertDialog.Description>
+
+                    <Flex gap="3" mt="4" justify="end">
+                        <AlertDialog.Cancel asChild>
+                            <Button variant="soft" color="gray" onClick={() => setIsDialogOpen(false)}>
+                                OK
+                            </Button>
+                        </AlertDialog.Cancel>
+                    </Flex>
+                </AlertDialog.Content>
+            </AlertDialog.Root>
         </div>
     );
 }
