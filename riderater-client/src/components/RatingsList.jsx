@@ -5,7 +5,7 @@ import {Spinner} from "@radix-ui/themes";
 import AttractionButton from './AttractionButton.jsx';
 import Rating from "./Rating.jsx";
 import CreateRatingButton from "./CreateRatingButton.jsx";
-import {Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis} from "recharts";
+import {Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 
 // should implement pagination
 const RatingsList = ({location, attractionName, attractionDescription}) => {
@@ -96,14 +96,19 @@ const RatingsList = ({location, attractionName, attractionDescription}) => {
     }
 
     return (
-        <div className={"center"}>
+        <div className={'ratings-list-container'}>
             <h1 className={'title'}>{attraction.name}</h1>
             <h2 className={'title'}>{attraction.averageRating}/5</h2>
-                <BarChart width={730} height={250} data={data}>
-                    <XAxis dataKey="rating" />
-                    <YAxis domain={["auto", "auto"]} />
+            <div width='100%' style={{display: "flex", justifyContent: "center", marginBottom: "1%"}}>
+                <BarChart width={730} height={300} data={data} margin={{top: 0, right: 0, bottom: 20, left: 10 }}>
+                    <XAxis dataKey="rating" allowDecimals={false}>
+                        <Label value="Rating" offset={0} position="bottom" />
+                    </XAxis>
+                    <YAxis domain={["auto", "auto"]} allowDecimals={false} label={{ value: '# of ratings', angle: -90, position: 'leftCenter'}}/>
                     <Bar dataKey="count" fill="#82ca9d" barSize={"7%"} />
+                    <Tooltip cursor={false}/>
                 </BarChart>
+            </div>
 
             <CreateRatingButton apiLocationName={attraction.location.toLowerCase()} apiAttractionId={attraction.id} />
 
