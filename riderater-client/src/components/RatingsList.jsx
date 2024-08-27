@@ -119,7 +119,7 @@ const RatingsList = ({location, attractionName, attractionDescription}) => {
                         ratings.map((rating, index) => (
                             <Rating
                                 key={rating.id || index}
-                                user={"anonymous"}
+                                user={rating.userName}
                                 date={rating.date}
                                 rating={rating.rating}
                                 review={rating.comment}

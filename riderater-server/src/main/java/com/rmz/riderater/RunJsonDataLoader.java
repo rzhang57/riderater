@@ -54,8 +54,9 @@ public class RunJsonDataLoader implements CommandLineRunner {
                 List<Rating> ratings = objectMapper.readValue(inputStream, new TypeReference<List<Rating>>() {});
 
                 for (Rating rating : ratings) {
+                    log.info(rating.getUserName());
                     Attraction a = attractionRepo.getAttraction(rating.getAttraction().getId());
-                    ratingsRepo.createRating(rating, a);
+                    ratingsRepo.createRatingDefDate(rating, a);
                 }
             } catch (IOException e) {
                 throw new RuntimeException("Failed to read JSON data", e);

@@ -14,6 +14,9 @@ public class Rating {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    private String userName;
+
     private Integer rating;
     private String comment;
 
@@ -30,24 +33,27 @@ public class Rating {
     private Attraction attraction;
     //private String review;
 
-    public Rating(Integer id, Integer rating, String comment, Attraction attraction) {
+    public Rating(Integer id, String userName, Integer rating, String comment, Attraction attraction) {
         this.id = id;
+        this.userName = userName;
         this.rating = rating;
         this.comment = comment;
         this.attraction = attraction;
     }
 
 
-    public Rating(Integer id, Integer rating, String comment, LocalDate date, Attraction attraction) {
+    public Rating(Integer id, String userName, Integer rating, String comment, LocalDate date, Attraction attraction) {
         this.id = id;
+        this.userName = userName;
         this.rating = rating;
         this.comment = comment;
         this.date = date;
         this.attraction = attraction;
     }
 
-    public Rating(Integer id, Integer rating, String comment, LocalDate date) {
+    public Rating(Integer id, String userName, Integer rating, String comment, LocalDate date) {
         this.id = id;
+        this.userName = userName;
         this.rating = rating;
         this.comment = comment;
         this.date = date;
@@ -65,6 +71,14 @@ public class Rating {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Integer getRating() {

@@ -17,7 +17,7 @@ public class RatingsRowMapper implements RowMapper {
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         // initial creation of rating
-        Rating rating = new Rating(rs.getInt("id"), rs.getInt("rating"), rs.getString("comment"), rs.getDate("date").toLocalDate());
+        Rating rating = new Rating(rs.getInt("id"), rs.getString("userName"), rs.getInt("rating"), rs.getString("comment"), rs.getDate("date").toLocalDate());
 
         // extrapolates attraction from foreign key, maps it to rating
 /*

@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS Attractions (
 
 CREATE TABLE IF NOT EXISTS ratings (
     id SERIAL NOT NULL,
+    userName TEXT,
     rating INT NOT NULL,
     comment TEXT,
     attraction_id INT NOT NULL,

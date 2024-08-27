@@ -23,9 +23,10 @@ export default function RatingForm() {
             setIsDialogOpen(true);
         } else {
             try {
-                console.log('Submitting:', { rating, comment, attractionId });
+                console.log('Submitting:', {rating, comment, attractionId });
                 const response = await axios.post(`http://localhost:8080/api/attractions/${attractionId}`,
                     {
+                        'userName': 'DefaultAnon', // should keep a variation of this for when new users without accounts want to rate, but also should change to actual request username.
                         'rating': rating,
                         'comment': comment,
                         'attractionId': attractionId,
