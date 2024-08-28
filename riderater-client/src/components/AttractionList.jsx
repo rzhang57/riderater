@@ -11,6 +11,16 @@ const AttractionList = () => {
     const name = useLocation();
     const {name : selectedLocation } = name.state || {};
 
+    useEffect(
+        () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // This makes the scroll smooth
+            });
+        },
+        [loading]
+    )
+
     useEffect (() => {
         const fetchAttractions = async () => {
             try {
