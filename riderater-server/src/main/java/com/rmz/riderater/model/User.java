@@ -16,12 +16,13 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private String role;
+    private Role role;
 
-    public User(int id, String username, String password) {
+    public User(int id, String username, String password, Role role) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public User() {}
@@ -50,11 +51,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }
