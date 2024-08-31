@@ -33,9 +33,14 @@ public class RideRaterController {
         this.aService = aService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public List<Attraction> findAll() {
         return aService.getAllAttractionsWithRatings();
+    }
+
+    @GetMapping("/")
+    public String securityTest() {
+        return "hello";
     }
 
 
