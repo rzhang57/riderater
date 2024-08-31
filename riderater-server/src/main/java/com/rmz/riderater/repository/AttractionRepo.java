@@ -2,7 +2,6 @@ package com.rmz.riderater.repository;
 
 
 import com.rmz.riderater.model.Attraction;
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.simple.JdbcClient;
@@ -14,15 +13,15 @@ import java.util.List;
 @Repository
 public class AttractionRepo {
     private static final Logger logger = LoggerFactory.getLogger(AttractionRepo.class);
-    private final JdbcClient jdbcClient;
+    private final JdbcClient jdbc;
 
-    public AttractionRepo(JdbcClient jdbcClient) {
-        this.jdbcClient = jdbcClient;
+    public AttractionRepo(JdbcClient jdbc) {
+        this.jdbc = jdbc;
     }
 
     // Create
     public void createAttraction(Attraction attraction) {
-        var updated = jdbcClient.sql("INSERT INTO Attractions(id, name, location, description, averageRating) VALUES(?, ?, ?, ?, ?)")
+        var updated = jdbc.sql("INSERT INTO Attractions(id, name, location, description, averageRating) VALUES(?, ?, ?, ?, ?)")
                 .params(List.of(attraction.getId(), attraction.getName(), attraction.getLocation().toString(), attraction.getDescription(), attraction.updateAverageRating()))
                 .update();
 
@@ -34,26 +33,26 @@ public class AttractionRepo {
 
     // should create a system so that get request for a given attraction shows a transient list of TOP REVIEWS for a given attraction
     public List<Attraction> getAttractions() {
-        return jdbcClient.sql("select * from attractions")
+        return jdbc.sql("select * from attractions")
                 .query(Attraction.class)
                 .list();
     }
 
     public List<Attraction> getAttractionsByPark(String location) {
-        return jdbcClient.sql("select * from attractions where location = ?")
+        return jdbc.sql("select * from attractions where location = ?")
                 .param(location)
                 .query(Attraction.class)
                 .list();
     }
 
     public List<String> getAttractionNames() {
-        return jdbcClient.sql("select name from attractions")
+        return jdbc.sql("select name from attractions")
                 .query(String.class)
                 .list();
     }
 
     public Attraction getAttraction(Integer id) {
-        return jdbcClient.sql("SELECT * FROM Attractions WHERE id = ?")
+        return jdbc.sql("SELECT * FROM Attractions WHERE id = ?")
                 .param(id) // passing in which variable to pass into the named param
                 .query(Attraction.class)
                 .single();
@@ -62,7 +61,7 @@ public class AttractionRepo {
 
     // Update
     public void update(Attraction attraction, Integer id) {
-        var updated =  jdbcClient.sql("UPDATE Attractions SET name = ?, location = ?, description = ?, average_rating = ? WHERE id = ?")
+        var updated =  jdbc.sql("UPDATE Attractions SET name = ?, location = ?, description = ?, average_rating = ? WHERE id = ?")
                 .params(List.of(attraction.getName(), attraction.getLocation().toString(), attraction.getDescription(), attraction.updateAverageRating(), id))
                 .update();
 
@@ -72,7 +71,7 @@ public class AttractionRepo {
     // Delete
 
     public void delete(Integer id) {
-        var updated = jdbcClient.sql("DELETE FROM Attractions WHERE id = ?")
+        var updated = jdbc.sql("DELETE FROM Attractions WHERE id = ?")
                 .params(id)
                 .update();
         Assert.state(updated == 1, "Failed to delete attraction at id " + id);
@@ -81,7 +80,7 @@ public class AttractionRepo {
     // instead average rating inside attractions table, should put into a view instead of directly in schema, done in database directly - get data from view instead of calculating through jdbc
 
     public void updateAverageRating(Integer attractionId) {
-        var updated = jdbcClient.sql(
+        var updated = jdbc.sql(
                         "UPDATE Attractions " +
                                 "SET averageRating = (" +
                                 "    SELECT AVG(rating) " +

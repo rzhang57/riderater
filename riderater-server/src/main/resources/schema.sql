@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS ratings;
 DROP TABLE IF EXISTS Attractions;
+DROP TABLE IF EXISTS Users;
 
 
 CREATE TABLE IF NOT EXISTS Attractions (
@@ -22,4 +23,12 @@ CREATE TABLE IF NOT EXISTS ratings (
     CONSTRAINT fk_attraction
         FOREIGN KEY (attraction_id)
         REFERENCES Attractions (id)
+);
+
+CREATE TABLE IF NOT EXISTS Users (
+    id SERIAL NOT NULL,
+    username varchar(20) NOT NULL,
+    password varchar(250) NOT NULL,
+    role varchar(20) NOT NULL,
+    primary key (id)
 );
