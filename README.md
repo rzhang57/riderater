@@ -32,7 +32,7 @@
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/yourusername/riderater.git
+   git clone https://github.com/rzhang57/riderater.git
 
 2. Navigate to the project directory:
    ```bash
