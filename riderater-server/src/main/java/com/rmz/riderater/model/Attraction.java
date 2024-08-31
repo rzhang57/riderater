@@ -15,6 +15,8 @@ public class Attraction {
     private Integer id;
     @NotEmpty
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private Location location;
     private String description;
     private double averageRating;
