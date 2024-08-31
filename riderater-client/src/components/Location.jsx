@@ -11,7 +11,7 @@ const Location = ({ name, imgUrl, location }) => {
     return (
             <button className={"location-button"} onClick={handleClick}>
                 <img src={imgUrl} className={"location-image"} />
-                <div>{name}</div>
+                <div className={'rating-user'}>{name}</div>
             </button>
     );
 };

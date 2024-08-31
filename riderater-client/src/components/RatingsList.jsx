@@ -102,9 +102,9 @@ const RatingsList = ({location, attractionName, attractionDescription}) => {
             <div width='100%' style={{display: "flex", justifyContent: "center", marginBottom: "1%"}}>
                 <BarChart width={730} height={300} data={data} margin={{top: 0, right: 0, bottom: 20, left: 10 }}>
                     <XAxis dataKey="rating" allowDecimals={false}>
-                        <Label value="Rating" offset={0} position="bottom" />
+                        <Label value="Rating" offset={0} position="bottom" fontFamily={'Helvetica'} fontSize={'14'} />
                     </XAxis>
-                    <YAxis domain={["auto", "auto"]} allowDecimals={false} label={{ value: '# of ratings', angle: -90, position: 'leftCenter'}}/>
+                    <YAxis domain={["auto", "auto"]} allowDecimals={false} label={{ value: '# of ratings', angle: -90, position: 'leftCenter', fontFamily: 'Helvetica', fontSize: '14'}}/>
                     <Bar dataKey="count" fill="#82ca9d" barSize={"7%"} />
                     <Tooltip cursor={false}/>
                 </BarChart>
