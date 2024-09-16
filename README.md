@@ -47,9 +47,9 @@
 
 3. Modify/Create application.properties file and define your datasource with credentials
    ```bash
-   spring.datasource.url=jdbc:postgresql://localhost:5432/Attractions
-   spring.datasource.username=ryan
-   spring.datasource.password=password
+   spring.datasource.url=
+   spring.datasource.username=
+   spring.datasource.password=
 
 4. Run RideRaterApplication.java to build and start the backend server
 
