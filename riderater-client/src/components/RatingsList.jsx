@@ -29,8 +29,6 @@ const RatingsList = ({location, attractionName, attractionDescription}) => {
                 return ratingCount || 0;
             }
 
-
-
             const dataTemp = [];
 
             for (let i = 1; i <= 5; i++) {
