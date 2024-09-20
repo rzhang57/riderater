@@ -12,7 +12,6 @@ export default function AttractionButton({name, imgUrl, apiAttractionId, apiLoca
     return (
         <>
             <button className={"location-button"} onClick={handleClick}>
-                <img src={imgUrl} className={"location-image"} />
                 <div className={'rating-user'}>{name}</div>
                 <div className={'rating-score'}>{avgRating}/5</div>
             </button>
