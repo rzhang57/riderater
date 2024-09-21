@@ -38,16 +38,11 @@ public class RideRaterController {
         return aService.getAllAttractionsWithRatings();
     }
 
-    @GetMapping("/")
-    public String securityTest() {
-        return "hello";
-    }
-
 
     //post (create)
     // create attraction
     @ResponseStatus(HttpStatus.CREATED) // directly tells if something was created so no need to check the database to see
-    @PostMapping("/")
+    @PostMapping("/createAttraction")
     public void create(@Valid @RequestBody Attraction a) {
         aRepo.createAttraction(a);
     }

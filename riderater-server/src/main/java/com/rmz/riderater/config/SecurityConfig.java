@@ -15,6 +15,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests( auth -> {
+                    auth.requestMatchers("/api/attractions/createAttraction").permitAll(); // implement authorization
                     auth.anyRequest().permitAll();
                 })
                 .oauth2Login(Customizer.withDefaults()) // oauth2 default providers using 3rd party apps (check app.prop for supported)

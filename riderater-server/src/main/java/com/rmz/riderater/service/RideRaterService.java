@@ -73,4 +73,15 @@ public class RideRaterService {
         return attractions;
     }
 
+    // use quick sort to and other service to sort
+    public List<Attraction> getAttractionsSorted(String location) {
+        List<Attraction> attractions = new ArrayList<>();
+        for (Attraction attraction : attractionRepo.getAttractionsByPark(location)) {
+            Attraction newAttraction = getAttractionWithRatings(attraction.getId());
+            attractions.add(newAttraction);
+        }
+
+        return attractions;
+    }
+
 }

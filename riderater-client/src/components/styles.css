@@ -55,6 +55,17 @@
     text-align: center;
 }
 
+.gridtemp {
+    display: grid;
+    /*grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
+    grid-template-rows: repeat(2, auto); /* Creates 2 rows with automatic height */
+    gap: 50px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .ratings-list {
     display: grid;
     grid-template-columns: auto; /* Creates 3 equal-width columns */
