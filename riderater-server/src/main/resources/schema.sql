@@ -25,10 +25,11 @@ CREATE TABLE IF NOT EXISTS ratings (
         REFERENCES Attractions (id)
 );
 
--- CREATE TABLE IF NOT EXISTS Users (
---     id SERIAL NOT NULL,
---     username varchar(20) NOT NULL,
---     password varchar(250) NOT NULL,
---     role varchar(20) NOT NULL,
---     primary key (id)
--- );
+CREATE TABLE IF NOT EXISTS Users (
+    id SERIAL NOT NULL,
+    google_id varchar(255) UNIQUE NOT NULL,
+    username varchar(255) NOT NULL,
+    email varchar(255) NOT NULL,
+    role varchar(20) NOT NULL,
+    primary key (id)
+);

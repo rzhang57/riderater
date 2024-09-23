@@ -15,10 +15,14 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests( auth -> {
-                    auth.requestMatchers("/api/attractions/createAttraction").permitAll(); // implement authorization
+                    auth.requestMatchers("/api/attractions/createAttraction").authenticated();
+                    auth.requestMatchers("/api/attractions/deleteAttraction").authenticated();
+                    auth.requestMatchers("/api/attractions/{id}/create").authenticated(); // implement authorization
                     auth.anyRequest().permitAll();
                 })
-                .oauth2Login(Customizer.withDefaults()) // oauth2 default providers using 3rd party apps (check app.prop for supported)
+                .oauth2Login(oauth2 -> oauth2 // oauth2 default providers using 3rd party apps (check app.prop for supported)
+                        .loginPage("/oauth2/authorization/google")
+                        .defaultSuccessUrl("/loginSuccess", true))
                 .build();
     }
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {AlertDialog, Button, Flex} from "@radix-ui/themes";
@@ -10,6 +10,29 @@ export default function RatingForm() {
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+    useEffect(() => {
+        const checkAuthStatus = async () => {
+            try {
+                const response = await fetch('/loginSuccess', {
+                    credentials: 'include', // Ensure cookies/sessions are sent with the request
+                });
+
+                if (response.ok) {
+                    const userData = await response.json();
+                    setUser(userData); // Set the authenticated user
+                } else {
+                    // User is not authenticated, redirect to login
+                    window.location.href = '/oauth2/authorization/google'; // Force Google login
+                }
+            } catch (error) {
+                console.error('Error checking authentication status:', error);
+                window.location.href = '/oauth2/authorization/google'; // Redirect to login on error
+            }
+        };
+
+        checkAuthStatus();
+    }, []);
 
     const navigate = useNavigate();
 
@@ -24,7 +47,7 @@ export default function RatingForm() {
         } else {
             try {
                 console.log('Submitting:', {rating, comment, attractionId });
-                const response = await axios.post(`http://localhost:8080/api/attractions/${attractionId}`,
+                const response = await axios.post(`http://localhost:8080/api/attractions/${attractionId}/create`,
                     {
                         'userName': 'DefaultAnon', // should keep a variation of this for when new users without accounts want to rate, but also should change to actual request username.
                         'rating': rating,

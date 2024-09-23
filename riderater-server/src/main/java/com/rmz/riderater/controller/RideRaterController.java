@@ -49,7 +49,7 @@ public class RideRaterController {
 
     //create rating
     @ResponseStatus(HttpStatus.CREATED) // directly tells if something was created so no need to check the database to see
-    @PostMapping("/{id}")
+    @PostMapping("/{id}/create")
     public void createRating(@Valid @RequestBody Rating r, @PathVariable Integer id) {
         Attraction a = aRepo.getAttraction(id);
         rRepo.createRatingDefDate(r, a);
