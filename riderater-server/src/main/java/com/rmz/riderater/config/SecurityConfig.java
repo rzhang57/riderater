@@ -14,11 +14,15 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .csrf().disable() // Disable CSRF protection
                 .authorizeHttpRequests( auth -> {
-                    auth.requestMatchers("/api/attractions/createAttraction").authenticated();
-                    auth.requestMatchers("/api/attractions/deleteAttraction").authenticated();
-                    auth.requestMatchers("/api/attractions/{id}/create").authenticated(); // implement authorization
-                    auth.anyRequest().permitAll();
+//                    auth.requestMatchers("/api/attractions/createAttraction").authenticated();
+//                    auth.requestMatchers("/api/attractions/deleteAttraction").authenticated();
+//                    auth.requestMatchers("/loginSuccess").authenticated();
+//                    auth.requestMatchers("/oauth2/authorization/google").permitAll();
+//                    auth.requestMatchers("/api/attractions/{id}/create").permitAll(); // implement authorization
+                    auth.requestMatchers("/api/attractions/CALIFORNIA").permitAll(); // implement authorization
+                        auth.anyRequest().permitAll();
                 })
                 .oauth2Login(oauth2 -> oauth2 // oauth2 default providers using 3rd party apps (check app.prop for supported)
                         .loginPage("/oauth2/authorization/google")

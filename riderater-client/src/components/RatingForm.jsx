@@ -3,6 +3,8 @@ import {useLocation, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {AlertDialog, Button, Flex} from "@radix-ui/themes";
 import error from "eslint-plugin-react/lib/util/error.js";
+import {useAuth} from "../AuthContext";
+
 
 export default function RatingForm() {
     const { attractionId } = useParams();
@@ -10,29 +12,7 @@ export default function RatingForm() {
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-    useEffect(() => {
-        const checkAuthStatus = async () => {
-            try {
-                const response = await fetch('/loginSuccess', {
-                    credentials: 'include', // Ensure cookies/sessions are sent with the request
-                });
-
-                if (response.ok) {
-                    const userData = await response.json();
-                    setUser(userData); // Set the authenticated user
-                } else {
-                    // User is not authenticated, redirect to login
-                    window.location.href = '/oauth2/authorization/google'; // Force Google login
-                }
-            } catch (error) {
-                console.error('Error checking authentication status:', error);
-                window.location.href = '/oauth2/authorization/google'; // Redirect to login on error
-            }
-        };
-
-        checkAuthStatus();
-    }, []);
+    const { authenticated, loading } = useAuth();
 
     const navigate = useNavigate();
 
@@ -40,6 +20,7 @@ export default function RatingForm() {
 
     const handleClick = async (e) => {
         e.preventDefault();
+
 
 
         if (rating === 0) {

@@ -5,6 +5,7 @@ import com.rmz.riderater.repository.UserRepo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
@@ -24,8 +25,10 @@ public class LoginController {
         this.userRepo = userRepo;
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/loginSuccess")
     public void loginSuccess(@AuthenticationPrincipal OAuth2User principal, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         String googleId = principal.getAttribute("sub");
         String username = principal.getAttribute("name");
         String email = principal.getAttribute("email");
@@ -38,15 +41,9 @@ public class LoginController {
             newUser.setEmail(email);
             newUser.setRole("USER");
             userRepo.save(newUser);
-
-            DefaultSavedRequest savedRequest = (DefaultSavedRequest) requestCache.getRequest(request, response);
-            if (savedRequest != null) {
-                String originalUrl = savedRequest.getRedirectUrl();
-                response.sendRedirect(originalUrl); // Redirect back to the original URL
-            } else {
-                response.sendRedirect("/"); // Redirect to home or any default page if the original URL is not found
-            }
         }
+
+        response.sendRedirect("http://localhost:5174");
     }
 
     @GetMapping("/logout")
